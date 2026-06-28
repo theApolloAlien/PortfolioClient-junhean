@@ -10,7 +10,9 @@ export function PortfolioContact() {
 
   return (
     <section id="contact" data-theme="dark" style={{ position: 'relative', overflow: 'hidden', background: 'var(--surface)', color: 'var(--text-strong)' }}>
-      <AuraBackdrop palette="violet" intensity="subtle" blend="screen" />
+      <div className="pf-parallax" data-parallax="0.12" style={{ position: 'absolute', inset: 0 }}>
+        <AuraBackdrop palette="violet" intensity="subtle" blend="screen" />
+      </div>
 
       <div className="pf-section" style={{ position: 'relative', zIndex: 2 }}>
         <div className="pf-container">

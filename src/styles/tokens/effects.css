@@ -7,8 +7,8 @@
 :root {
   /* ── Film grain (fractalNoise, desaturated) — tile as overlay ── */
   --grain: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHdpZHRoPScxNTAnIGhlaWdodD0nMTUwJz48ZmlsdGVyIGlkPSdnJz48ZmVUdXJidWxlbmNlIHR5cGU9J2ZyYWN0YWxOb2lzZScgYmFzZUZyZXF1ZW5jeT0nMC44MicgbnVtT2N0YXZlcz0nMycgc3RpdGNoVGlsZXM9J3N0aXRjaCcvPjxmZUNvbG9yTWF0cml4IHR5cGU9J3NhdHVyYXRlJyB2YWx1ZXM9JzAnLz48L2ZpbHRlcj48cmVjdCB3aWR0aD0nMTAwJScgaGVpZ2h0PScxMDAlJyBmaWx0ZXI9J3VybCgjZyknLz48L3N2Zz4="); /* @kind other */
-  --grain-opacity:      0.14;   /* @kind other */
-  --grain-opacity-dark: 0.10;   /* @kind other */
+  --grain-opacity:      0.30;   /* @kind other — more prominent film grain */
+  --grain-opacity-dark: 0.22;   /* @kind other */
 
   /* ── Blur radii ── */
   --blur-orb:   34px;   /* glossy project-card spheres */
@@ -44,9 +44,32 @@
   0%, 100% { transform: translate(0, 0) scale(1); }
   50%      { transform: translate(-7%, 6%) scale(1.16); }
 }
-@keyframes float-orb {
-  0%, 100% { transform: translateY(0); }
-  50%      { transform: translateY(-10px); }
+/* Breathe — animates ONLY opacity so it never clobbers the drift transform.
+   Range is parameterised per blob via --glow-min / --glow-max so each
+   AuraBackdrop breathes around its own base intensity. */
+@keyframes aura-glow {
+  0%, 100% { opacity: var(--glow-min, 0.55); }
+  50%      { opacity: var(--glow-max, 0.95); }
+}
+/* Orb float paths — gentle wandering translate. Amplitude scales with each
+   orb's --roam length so one keyframe fits every size; the blobs always
+   return to origin (0,0) so layout positions never shift. */
+@keyframes orb-float-a {
+  0%, 100% { transform: translate(0, 0); }
+  25%      { transform: translate(calc(var(--roam, 12px) * 0.7),  calc(var(--roam, 12px) * -0.55)); }
+  50%      { transform: translate(calc(var(--roam, 12px) * -0.45), calc(var(--roam, 12px) * -1)); }
+  75%      { transform: translate(calc(var(--roam, 12px) * -0.85), calc(var(--roam, 12px) * 0.35)); }
+}
+@keyframes orb-float-b {
+  0%, 100% { transform: translate(0, 0); }
+  33%      { transform: translate(calc(var(--roam, 12px) * -0.8), calc(var(--roam, 12px) * 0.6)); }
+  66%      { transform: translate(calc(var(--roam, 12px) * 0.65), calc(var(--roam, 12px) * 0.95)); }
+}
+@keyframes orb-float-c {
+  0%, 100% { transform: translate(0, 0); }
+  20%      { transform: translate(calc(var(--roam, 12px) * 0.9),  calc(var(--roam, 12px) * 0.4)); }
+  50%      { transform: translate(calc(var(--roam, 12px) * 0.3),  calc(var(--roam, 12px) * -0.85)); }
+  80%      { transform: translate(calc(var(--roam, 12px) * -0.7), calc(var(--roam, 12px) * -0.25)); }
 }
 @keyframes chevron-bob {
   0%, 100% { transform: translateY(0); }

@@ -1,7 +1,7 @@
 /* App-level globals (mirrors the inline <style> from the prototype's
    index.html). Smooth in-page anchor scrolling, frozen under reduced
    motion; body margin reset lives in tokens/base.css. */
-html { scroll-behavior: smooth; }
+html { scroll-behavior: smooth; scroll-padding-top: 80px; }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
 }

@@ -47,7 +47,7 @@ export const PORTFOLIO = {
     { title: 'NUSPS Galen House', role: 'Publicity Head', dates: '2021–23', orb: 'magenta', outcome: 'Led house publicity: Instagram, merchandise, event posters, team-bonding & inter-house events.', tags: ['Publicity', 'Social media', 'Merch'] },
     { title: "Dispense-A-Dream '22", role: 'Programmes Subcommittee', dates: '2022–23', orb: 'coral', outcome: 'Ran an in-person healthcare workshop for professionals in rural Cambodia during a 2-week CIP.', tags: ['Workshop', 'Chronic disease'] },
     { title: "Dispense-A-Dream '21", role: 'Publicity Head', dates: '2021–22', orb: 'violet', outcome: 'Led a 3-person publicity team; delivered an online 3-day workshop on stewardship & COVID-19.', tags: ['Publicity', 'Online event'] },
-    { title: 'CNY Hampers @ Fei Yue', role: 'Fundraising & Logistics', dates: '2017–18', orb: 'gold', outcome: 'Ran fundraising + 4 food drives; logistics for 42 hampers for underprivileged elderly.', tags: ['Fundraising', 'Logistics'] },
+    { title: 'CNY Hampers @ Fei\u00A0Yue', role: 'Fundraising & Logistics', dates: '2017–18', orb: 'gold', outcome: 'Ran fundraising + 4 food drives; logistics for 42 hampers for underprivileged elderly.', tags: ['Fundraising', 'Logistics'] },
     { title: 'Young Scientist Symposium', role: 'Poster Presenter', dates: '2018', orb: 'lavender', outcome: 'Selected to present genomic-marker research findings on drug-induced allergy.', tags: ['Research', 'Poster'] },
   ],
 

@@ -44,6 +44,13 @@
   0%, 100% { transform: translate(0, 0) scale(1); }
   50%      { transform: translate(-7%, 6%) scale(1.16); }
 }
+/* Breathe — animates ONLY opacity so it never clobbers the drift transform.
+   Range is parameterised per blob via --glow-min / --glow-max so each
+   AuraBackdrop breathes around its own base intensity. */
+@keyframes aura-glow {
+  0%, 100% { opacity: var(--glow-min, 0.55); }
+  50%      { opacity: var(--glow-max, 0.95); }
+}
 @keyframes float-orb {
   0%, 100% { transform: translateY(0); }
   50%      { transform: translateY(-10px); }

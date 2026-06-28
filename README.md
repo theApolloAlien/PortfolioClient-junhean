@@ -1,55 +1,57 @@
-# Ho Jun Hean — Portfolio
+# Ho Jun Hean Portfolio
 
-**Live demo → [portfolioclient-junhean.vercel.app](https://portfolioclient-junhean.vercel.app)**
+**Live demo:** https://portfolioclient-junhean.vercel.app
 
-A single-page personal portfolio for **Ho Jun Hean** — a final-year Pharmacy (Hons) student at NUS — built on the **Aura** design system: a grainy aurora-gradient editorial look (soft blurred aurora blobs over a warm-grey or oxblood canvas, a fixed film-grain finish, Playfair Display against wide-tracked Space Grotesk).
+A single-page personal portfolio for **Ho Jun Hean**, a final-year Pharmacy (Hons) student at NUS.
 
-Implemented as a **React + Vite** app, ported faithfully from the Aura design-system handoff bundle (`aura-portfolio-design-system/`). The original prototype rendered via CDN React + in-browser Babel; this version compiles the same components ahead of time.
+The site is built with **React + Vite** and follows the **Aura** design system, featuring a grainy aurora-inspired aesthetic with soft gradients, warm-grey and oxblood themes, and typography using Playfair Display and Space Grotesk.
 
-## Develop
+This project is a production-ready port of the original Aura design-system prototype (`aura-portfolio-design-system/`), which was built with CDN React and in-browser Babel. The same components have been migrated to a standard Vite project for development and deployment.
+
+## Development
 
 ```bash
 npm install
-npm run dev      # start the Vite dev server (http://localhost:5173)
+npm run dev      # Starts the Vite development server (http://localhost:5173)
 ```
 
 ## Build
 
 ```bash
-npm run build    # output static site to dist/
-npm run preview  # serve the production build locally
+npm run build    # Builds the production site into dist/
+npm run preview  # Serves the production build locally
 ```
 
-`dist/` is a fully static site — deploy it to any static host (GitHub Pages, Netlify, Vercel, Cloudflare Pages). `vite.config.js` uses a relative `base` so it works at a domain root or a subpath.
+The `dist/` directory contains a fully static site that can be deployed to GitHub Pages, Netlify, Vercel, Cloudflare Pages, or any other static hosting service. `vite.config.js` uses a relative `base`, allowing the site to work from either a root domain or a subdirectory.
 
-## Structure
+## Project Structure
 
-```
-index.html                     Vite entry (loads webfonts, mounts the app)
-public/favicon.svg             on-brand aurora favicon
+```text
+index.html                     Vite entry point
+public/favicon.svg             Aurora favicon
 src/
-  main.jsx                     React root + global CSS imports
-  App.jsx                      app shell — theme, scroll & reveal behaviour
-  data/portfolio.js            all site content (resume-derived)
+  main.jsx                     React entry point and global CSS imports
+  App.jsx                      App shell, theme, scrolling, and animations
+  data/portfolio.js            Portfolio content
   styles/
-    styles.css                 token entry (@imports the tokens below)
-    tokens/                    colors · typography · spacing · effects · base
-    portfolio.css              page-level layout & motion helpers
-    app.css                    smooth-scroll / reduced-motion globals
-  components/                  Aura design-system primitives
-    brand/                     AuraBackdrop · GrainOverlay · GradientOrb
-    core/                      Button · Pill · SectionLabel · Annotation · NavLink · ThemeToggle · GlassPanel
+    styles.css                 Main stylesheet
+    tokens/                    Design tokens
+    portfolio.css              Layout and animation styles
+    app.css                    Global styles
+  components/
+    brand/                     AuraBackdrop, GrainOverlay, GradientOrb
+    core/                      Button, Pill, SectionLabel, Annotation, NavLink, ThemeToggle, GlassPanel
     forms/                     Input
-    content/                   ProjectCard · TimelineEntry
-    index.js                   barrel re-export of all primitives
-  sections/                    PortfolioNav · Hero · About · Experience · Work · Awards · Contact
+    content/                   ProjectCard, TimelineEntry
+    index.js                   Component exports
+  sections/                    PortfolioNav, Hero, About, Experience, Work, Awards, Contact
 ```
 
 ## Notes
 
-- **Content** lives in [`src/data/portfolio.js`](src/data/portfolio.js) — edit there to update copy, projects, experience and awards.
-- **Theme** toggles between the warm-grey light canvas and the oxblood dark canvas; the contact section is always dark for the dramatic close.
-- The **contact form is presentational** (no backend), by design in the source brief — the LinkedIn CTA is the real contact path.
-- **Fonts** are Google Fonts (Playfair Display + Space Grotesk), loaded via `<link>` in `index.html`.
-- Honours `prefers-reduced-motion`: aurora drift, reveals and the parallax freeze; gradients remain.
-- The original handoff bundle is kept under `aura-portfolio-design-system/` for reference and is git-ignored.
+* Update portfolio content in `src/data/portfolio.js`, including projects, experience, awards, and personal information.
+* The theme can be switched between warm-grey (light) and oxblood (dark). The contact section always uses the dark theme.
+* The contact form is presentational only and does not submit data. LinkedIn is the intended contact method.
+* Fonts (Playfair Display and Space Grotesk) are loaded from Google Fonts in `index.html`.
+* Motion effects respect `prefers-reduced-motion`, disabling animations while preserving the visual design.
+* The original design-system handoff is included in `aura-portfolio-design-system/` for reference and is excluded from version control.

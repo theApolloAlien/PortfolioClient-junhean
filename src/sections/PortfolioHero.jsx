@@ -20,28 +20,50 @@ export function PortfolioHero({ theme }) {
 
   const secRef = useRef(null);
   const auraRef = useRef(null);
+  const contentRef = useRef(null);
   useEffect(() => {
     if (!window.matchMedia('(prefers-reduced-motion: no-preference)').matches) return;
-    const sec = secRef.current, aura = auraRef.current;
-    if (!sec || !aura) return;
-    let raf = 0;
+    const sec = secRef.current, aura = auraRef.current, content = contentRef.current;
+    if (!sec) return;
+    let raf = 0, mx = 0, my = 0;
+    const apply = () => {
+      raf = 0;
+      // Aura follows the pointer (smoothed by its CSS transition).
+      if (aura) aura.style.transform = `translate(${mx}px, ${my}px)`;
+      // Hero copy drifts down a touch and fades as you scroll past it.
+      if (content) {
+        const y = window.scrollY;
+        const vh = window.innerHeight || 1;
+        content.style.transform = `translateY(${(y * 0.2).toFixed(1)}px)`;
+        content.style.opacity = (1 - Math.min(y / vh, 1) * 0.85).toFixed(3);
+      }
+    };
+    const schedule = () => { if (!raf) raf = requestAnimationFrame(apply); };
     const onMove = (e) => {
       const r = sec.getBoundingClientRect();
-      const x = ((e.clientX - r.left) / r.width - 0.5) * 28;
-      const y = ((e.clientY - r.top) / r.height - 0.5) * 28;
-      cancelAnimationFrame(raf);
-      raf = requestAnimationFrame(() => { aura.style.transform = `translate(${x}px, ${y}px)`; });
+      mx = ((e.clientX - r.left) / r.width - 0.5) * 28;
+      my = ((e.clientY - r.top) / r.height - 0.5) * 28;
+      schedule();
     };
-    const onLeave = () => { cancelAnimationFrame(raf); aura.style.transform = 'translate(0, 0)'; };
+    const onLeave = () => { mx = 0; my = 0; schedule(); };
+    apply();
     sec.addEventListener('mousemove', onMove);
     sec.addEventListener('mouseleave', onLeave);
-    return () => { sec.removeEventListener('mousemove', onMove); sec.removeEventListener('mouseleave', onLeave); cancelAnimationFrame(raf); };
+    window.addEventListener('scroll', schedule, { passive: true });
+    return () => {
+      sec.removeEventListener('mousemove', onMove);
+      sec.removeEventListener('mouseleave', onLeave);
+      window.removeEventListener('scroll', schedule);
+      cancelAnimationFrame(raf);
+    };
   }, []);
 
   return (
     <section id="top" className="pf-hero pf-section" ref={secRef}>
-      <div ref={auraRef} style={{ position: 'absolute', inset: 0, transition: 'transform 0.6s var(--ease-out)', willChange: 'transform' }}>
-        <AuraBackdrop palette={palettes[pi]} intensity="bold" blend={theme === 'dark' ? 'screen' : 'normal'} />
+      <div className="pf-parallax" data-parallax="0.18" style={{ position: 'absolute', inset: 0 }}>
+        <div ref={auraRef} style={{ position: 'absolute', inset: 0, transition: 'transform 0.6s var(--ease-out)', willChange: 'transform' }}>
+          <AuraBackdrop palette={palettes[pi]} intensity="bold" blend={theme === 'dark' ? 'screen' : 'normal'} />
+        </div>
       </div>
 
       <div className="pf-slider">
@@ -50,7 +72,7 @@ export function PortfolioHero({ theme }) {
         <button onClick={() => step(-1)}>Prev</button>
       </div>
 
-      <div className="pf-container" style={{ position: 'relative', zIndex: 2, textAlign: 'center', flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+      <div ref={contentRef} className="pf-container pf-hero-content pf-hero-stagger" style={{ position: 'relative', zIndex: 2, textAlign: 'center', flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
         <div className="pf-eyebrow" data-reveal>{P.eyebrow}</div>
         <h1 className="pf-hero-name" data-reveal style={{ marginTop: 'var(--space-5)' }}>{P.name}</h1>
         <p className="pf-hero-tag" data-reveal style={{ marginTop: 'var(--space-5)', alignSelf: 'center' }}>{P.tagline}</p>

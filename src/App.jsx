@@ -46,11 +46,36 @@ export default function App() {
     return () => obs.disconnect();
   }, []);
 
+  // Scroll parallax for tagged backdrops (data-parallax="<factor>") — adds depth
+  // as you scroll. Throttled with rAF; frozen under reduced-motion.
+  useEffect(() => {
+    if (!window.matchMedia('(prefers-reduced-motion: no-preference)').matches) return;
+    const els = Array.from(document.querySelectorAll('[data-parallax]'));
+    if (!els.length) return;
+    let raf = 0;
+    const update = () => {
+      raf = 0;
+      const vh = window.innerHeight;
+      for (const el of els) {
+        const speed = parseFloat(el.dataset.parallax) || 0.1;
+        const r = el.getBoundingClientRect();
+        const offset = ((r.top + r.height / 2) - vh / 2) * speed;
+        el.style.transform = `translate3d(0, ${offset.toFixed(1)}px, 0)`;
+      }
+    };
+    const onScroll = () => { if (!raf) raf = requestAnimationFrame(update); };
+    update();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll);
+    return () => {
+      window.removeEventListener('scroll', onScroll);
+      window.removeEventListener('resize', onScroll);
+      cancelAnimationFrame(raf);
+    };
+  }, []);
+
   return (
     <div className="pf-root">
-      <div className="pf-gridlines" aria-hidden="true">
-        <div className="pf-gridlines-inner"><span></span><span></span><span></span><span></span><span></span><span></span></div>
-      </div>
       <PortfolioNav theme={theme} onTheme={setTheme} scrolled={scrolled} active={active} onBurger={() => { window.location.hash = '#about'; }} />
       <PortfolioHero theme={theme} />
       <PortfolioAbout />
@@ -58,7 +83,7 @@ export default function App() {
       <PortfolioWork />
       <PortfolioAwards />
       <PortfolioContact />
-      <GrainOverlay opacity={0.2} />
+      <GrainOverlay />
     </div>
   );
 }

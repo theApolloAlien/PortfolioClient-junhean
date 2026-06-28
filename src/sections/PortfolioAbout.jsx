@@ -5,7 +5,7 @@ import { PORTFOLIO } from '../data/portfolio.js';
 export function PortfolioAbout() {
   const P = PORTFOLIO;
   return (
-    <section id="about" className="pf-section">
+    <section id="about" className="pf-section" style={{ overflow: 'hidden' }}>
       <div className="pf-container">
         <SectionLabel index={1} rule data-reveal>About</SectionLabel>
 
@@ -22,14 +22,14 @@ export function PortfolioAbout() {
           }}>
             A pharmacist with a communicator&rsquo;s eye.
           </p>
-          <GradientOrb palette="lavender" size={108} float data-reveal style={{ justifySelf: 'end' }} />
+          <GradientOrb palette="lavender" size={108} roam={26} data-reveal style={{ justifySelf: 'end' }} />
         </div>
 
         <p className="pf-prose" data-reveal style={{ marginTop: 'var(--space-6)' }}>{P.bio}</p>
 
-        <div data-reveal style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 'var(--space-7)', marginTop: 'var(--space-9)' }}>
+        <div className="pf-stagger" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 'var(--space-7)', marginTop: 'var(--space-9)' }}>
           {P.skills.map((g) => (
-            <div className="pf-skillgroup" key={g.label}>
+            <div className="pf-skillgroup" data-reveal key={g.label}>
               <SectionLabel>{g.label}</SectionLabel>
               <div className="pf-pillrow">
                 {g.items.map((it) => <Pill key={it} tone="outline">{it}</Pill>)}

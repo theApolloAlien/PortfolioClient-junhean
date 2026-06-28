@@ -29,3 +29,5 @@ pnpm-debug.log*
 # the original design-system handoff bundle (kept locally, not part of the app)
 aura-portfolio-design-system/
 PortfolioDesignSystem-handoff.zip
+.vercel
+.env*

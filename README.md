@@ -1,5 +1,7 @@
 # Ho Jun Hean — Portfolio
 
+**Live demo → [portfolioclient-junhean.vercel.app](https://portfolioclient-junhean.vercel.app)**
+
 A single-page personal portfolio for **Ho Jun Hean** — a final-year Pharmacy (Hons) student at NUS — built on the **Aura** design system: a grainy aurora-gradient editorial look (soft blurred aurora blobs over a warm-grey or oxblood canvas, a fixed film-grain finish, Playfair Display against wide-tracked Space Grotesk).
 
 Implemented as a **React + Vite** app, ported faithfully from the Aura design-system handoff bundle (`aura-portfolio-design-system/`). The original prototype rendered via CDN React + in-browser Babel; this version compiles the same components ahead of time.

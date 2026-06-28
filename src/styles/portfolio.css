@@ -5,13 +5,11 @@
 
 .pf-root { position: relative; min-height: 100vh; background: var(--surface); color: var(--text-strong); transition: background var(--dur-slow) var(--ease-soft), color var(--dur-slow) var(--ease-soft); }
 
-/* ── Magazine column gridlines (fixed paper grid, behind content) ── */
-.pf-gridlines { position: fixed; inset: 0; z-index: 0; pointer-events: none; display: flex; justify-content: center; }
-.pf-gridlines-inner { width: 100%; max-width: var(--maxw); height: 100%; padding: 0 var(--gutter); box-sizing: border-box; display: grid; grid-template-columns: repeat(6, 1fr); }
-.pf-gridlines-inner > span { border-left: 1px solid var(--gridline); }
-.pf-gridlines-inner > span:last-child { border-right: 1px solid var(--gridline); }
+/* Gentle page-load settle (neutralised under prefers-reduced-motion) */
+.pf-root { animation: pf-page-in 0.7s var(--ease-out) both; }
+@keyframes pf-page-in { from { opacity: 0; } to { opacity: 1; } }
 
-/* lift real content above the gridlines */
+/* keep section content layered above the fixed backdrops */
 .pf-section { z-index: 1; }
 #contact { position: relative; z-index: 1; }
 
@@ -59,16 +57,37 @@
 .pf-footer { display: flex; align-items: center; justify-content: space-between; gap: var(--space-5); padding: var(--space-7) var(--gutter); border-top: 1px solid var(--hairline-soft); font-family: var(--font-sans); font-size: var(--text-small); color: var(--text-muted); flex-wrap: wrap; }
 
 /* ── Reveal on scroll (only when motion is allowed; JS adds .js-reveal) ── */
-.js-reveal [data-reveal] { opacity: 0; transform: translateY(30px); transition: opacity 0.85s var(--ease-out), transform 0.85s var(--ease-out); }
-.js-reveal [data-reveal].in { opacity: 1; transform: none; }
+.js-reveal [data-reveal] {
+  opacity: 0;
+  transform: translateY(34px) scale(0.985);
+  filter: blur(8px);
+  transition: opacity 0.9s var(--ease-out), transform 1s var(--ease-out), filter 0.9s var(--ease-out);
+  will-change: opacity, transform, filter;
+}
+.js-reveal [data-reveal].in { opacity: 1; transform: none; filter: none; }
+
+/* Directional variants — add a token to data-reveal, e.g. data-reveal="left" */
+.js-reveal [data-reveal="left"]  { transform: translateX(-40px); }
+.js-reveal [data-reveal="right"] { transform: translateX(40px); }
+.js-reveal [data-reveal="zoom"]  { transform: scale(0.9); }
+.js-reveal [data-reveal="left"].in,
+.js-reveal [data-reveal="right"].in,
+.js-reveal [data-reveal="zoom"].in { transform: none; }
 
 /* Staggered cascade for grids / lists of revealing children */
 .js-reveal .pf-stagger > [data-reveal] { transition-delay: 0s; }
-.js-reveal .pf-stagger > [data-reveal]:nth-child(2) { transition-delay: 0.08s; }
-.js-reveal .pf-stagger > [data-reveal]:nth-child(3) { transition-delay: 0.16s; }
-.js-reveal .pf-stagger > [data-reveal]:nth-child(4) { transition-delay: 0.24s; }
-.js-reveal .pf-stagger > [data-reveal]:nth-child(5) { transition-delay: 0.32s; }
-.js-reveal .pf-stagger > [data-reveal]:nth-child(6) { transition-delay: 0.40s; }
+.js-reveal .pf-stagger > [data-reveal]:nth-child(2) { transition-delay: 0.09s; }
+.js-reveal .pf-stagger > [data-reveal]:nth-child(3) { transition-delay: 0.18s; }
+.js-reveal .pf-stagger > [data-reveal]:nth-child(4) { transition-delay: 0.27s; }
+.js-reveal .pf-stagger > [data-reveal]:nth-child(5) { transition-delay: 0.36s; }
+.js-reveal .pf-stagger > [data-reveal]:nth-child(6) { transition-delay: 0.45s; }
+.js-reveal .pf-stagger > [data-reveal]:nth-child(7) { transition-delay: 0.54s; }
+.js-reveal .pf-stagger > [data-reveal]:nth-child(8) { transition-delay: 0.63s; }
+
+/* Hero load cascade — a slightly slower, more deliberate step */
+.js-reveal .pf-hero-stagger > [data-reveal] { transition-delay: 0.1s; }
+.js-reveal .pf-hero-stagger > [data-reveal]:nth-child(2) { transition-delay: 0.26s; }
+.js-reveal .pf-hero-stagger > [data-reveal]:nth-child(3) { transition-delay: 0.42s; }
 
 /* ── Smooth theme cross-fade — baseline (0-specificity, so inline styles &
       component transitions still win where they set their own) ── */
@@ -79,13 +98,36 @@
               box-shadow var(--dur-slow) var(--ease-soft);
 }
 
+/* ── Interaction polish ── */
+.pf-parallax { will-change: transform; }
+
+/* Hero content drifts/fades on scroll (set via JS custom props) */
+.pf-hero-content { will-change: transform, opacity; }
+
+/* Wordmark — subtle lift + accent shift on hover */
+.pf-wordmark { transition: color var(--dur) var(--ease-out), transform var(--dur) var(--ease-out); display: inline-block; }
+.pf-wordmark:hover { transform: translateY(-1px); }
+
+/* Slider NEXT / PREV — nudge toward their direction on hover */
+.pf-slider button { transition: color var(--dur) var(--ease-out), transform var(--dur) var(--ease-out); }
+.pf-slider button:hover { transform: translateX(-4px); }
+
+/* Scroll chevron — grow slightly and deepen on hover (bob keyframe still runs) */
+.pf-chevron { transition: transform var(--dur) var(--ease-out), color var(--dur) var(--ease-out); }
+.pf-chevron:hover { color: var(--accent); }
+
+/* Award rows — slide the name in a touch on hover */
+.pf-award { transition: padding-left var(--dur) var(--ease-out); }
+.pf-award:hover { padding-left: var(--space-3); }
+.pf-award-name { transition: color var(--dur) var(--ease-out); }
+.pf-award:hover .pf-award-name { color: var(--accent); }
+
 /* ── Responsive ── */
 @media (max-width: 860px) {
   .pf-nav-links { display: none; }
   .pf-burger { display: flex; }
   .pf-work-grid { grid-template-columns: 1fr; }
   .pf-slider { display: none; }
-  .pf-gridlines-inner { grid-template-columns: repeat(3, 1fr); }
 }
 @media (max-width: 600px) {
   .pf-hero { padding-top: 96px; }

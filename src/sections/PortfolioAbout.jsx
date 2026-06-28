@@ -27,9 +27,9 @@ export function PortfolioAbout() {
 
         <p className="pf-prose" data-reveal style={{ marginTop: 'var(--space-6)' }}>{P.bio}</p>
 
-        <div data-reveal style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 'var(--space-7)', marginTop: 'var(--space-9)' }}>
+        <div className="pf-stagger" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 'var(--space-7)', marginTop: 'var(--space-9)' }}>
           {P.skills.map((g) => (
-            <div className="pf-skillgroup" key={g.label}>
+            <div className="pf-skillgroup" data-reveal key={g.label}>
               <SectionLabel>{g.label}</SectionLabel>
               <div className="pf-pillrow">
                 {g.items.map((it) => <Pill key={it} tone="outline">{it}</Pill>)}

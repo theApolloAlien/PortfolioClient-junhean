@@ -1,0 +1,37 @@
+/* ─────────────────────────────────────────────────────────────
+   Aura · Spacing, layout & radii
+   Generous negative space is the aesthetic — scale steps grow
+   quickly. Section padding & gutters are fluid.
+   ───────────────────────────────────────────────────────────── */
+:root {
+  /* ── Spacing scale ── */
+  --space-1:  4px;
+  --space-2:  8px;
+  --space-3:  12px;
+  --space-4:  16px;
+  --space-5:  24px;
+  --space-6:  32px;
+  --space-7:  48px;
+  --space-8:  64px;
+  --space-9:  96px;
+  --space-10: 128px;
+  --space-11: 160px;
+  --space-12: 224px;
+
+  /* ── Layout ── */
+  --maxw:         1320px;
+  --maxw-prose:   640px;
+  --gutter:       clamp(20px, 6vw, 120px);   /* @kind spacing */
+  --section-pad:  clamp(96px, 13vw, 200px);  /* vertical rhythm   */
+
+  /* ── Radii ── */
+  --radius-pill: 999px;
+  --radius-xl:   32px;
+  --radius-lg:   24px;
+  --radius-md:   16px;
+  --radius-sm:   10px;
+  --radius-xs:   6px;
+
+  /* ── Hairline ── */
+  --rule: 1px;
+}

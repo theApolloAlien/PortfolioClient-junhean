@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <defs>
+    <radialGradient id="orb" cx="34%" cy="28%" r="78%">
+      <stop offset="0%" stop-color="#FFC9E6" />
+      <stop offset="44%" stop-color="#E81F8C" />
+      <stop offset="100%" stop-color="#7A3FF0" />
+    </radialGradient>
+  </defs>
+  <rect width="32" height="32" rx="7" fill="#EAE7E2" />
+  <circle cx="16" cy="16" r="11" fill="url(#orb)" />
+</svg>

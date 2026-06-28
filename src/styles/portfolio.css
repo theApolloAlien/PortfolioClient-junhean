@@ -1,0 +1,92 @@
+/* ─────────────────────────────────────────────────────────────
+   Portfolio UI kit — layout & motion helpers (kit-scoped, not a
+   shippable primitive). Composes Aura tokens + components.
+   ───────────────────────────────────────────────────────────── */
+
+.pf-root { position: relative; min-height: 100vh; background: var(--surface); color: var(--text-strong); transition: background var(--dur-slow) var(--ease-soft), color var(--dur-slow) var(--ease-soft); }
+
+/* ── Magazine column gridlines (fixed paper grid, behind content) ── */
+.pf-gridlines { position: fixed; inset: 0; z-index: 0; pointer-events: none; display: flex; justify-content: center; }
+.pf-gridlines-inner { width: 100%; max-width: var(--maxw); height: 100%; padding: 0 var(--gutter); box-sizing: border-box; display: grid; grid-template-columns: repeat(6, 1fr); }
+.pf-gridlines-inner > span { border-left: 1px solid var(--gridline); }
+.pf-gridlines-inner > span:last-child { border-right: 1px solid var(--gridline); }
+
+/* lift real content above the gridlines */
+.pf-section { z-index: 1; }
+#contact { position: relative; z-index: 1; }
+
+.pf-container { max-width: var(--maxw); margin: 0 auto; width: 100%; }
+.pf-section { position: relative; padding: var(--section-pad) var(--gutter); }
+.pf-section--tight { padding-block: clamp(64px, 9vw, 128px); }
+
+/* ── Nav ── */
+.pf-nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; gap: var(--space-6); padding: 18px var(--gutter); transition: background var(--dur) var(--ease-out), border-color var(--dur) var(--ease-out); border-bottom: 1px solid transparent; }
+.pf-nav.scrolled { background: var(--glass-tint); -webkit-backdrop-filter: blur(16px) saturate(1.1); backdrop-filter: blur(16px) saturate(1.1); border-bottom-color: var(--hairline-soft); }
+.pf-wordmark { font-family: var(--font-serif); font-weight: 700; font-size: 22px; letter-spacing: -0.01em; color: var(--text-strong); text-decoration: none; }
+.pf-nav-links { display: flex; gap: var(--space-7); }
+.pf-nav-right { display: flex; align-items: center; gap: var(--space-5); }
+.pf-burger { display: none; width: 30px; height: 18px; flex-direction: column; justify-content: space-between; background: none; border: none; cursor: pointer; padding: 0; }
+.pf-burger span { display: block; height: 2px; width: 100%; background: var(--text-strong); border-radius: 2px; }
+
+/* ── Hero ── */
+.pf-hero { min-height: 100svh; display: flex; flex-direction: column; justify-content: center; position: relative; overflow: hidden; padding-top: 120px; }
+.pf-eyebrow { font-family: var(--font-sans); font-size: var(--text-label); font-weight: 500; letter-spacing: var(--track-label); text-transform: uppercase; color: var(--text-muted); }
+.pf-hero-name { font-family: var(--font-serif); font-weight: 600; font-size: var(--text-hero); line-height: var(--leading-hero); letter-spacing: var(--track-tight); color: var(--text-strong); margin: 0; }
+.pf-hero-tag { font-family: var(--font-serif); font-style: italic; font-weight: 500; font-size: clamp(1.5rem, 3.2vw, 2.6rem); line-height: 1.2; color: var(--text-strong); }
+.pf-chevron { animation: chevron-bob 1.9s var(--ease-inout) infinite; }
+.pf-slider { display: flex; flex-direction: column; gap: 4px; align-items: flex-end; }
+.pf-slider button { background: none; border: none; cursor: pointer; font-family: var(--font-sans); font-size: var(--text-label); font-weight: 500; letter-spacing: var(--track-label); text-transform: uppercase; color: var(--text-muted); padding: 6px 0; transition: color var(--dur); }
+.pf-slider button:hover { color: var(--text-strong); }
+.pf-slider .rule { width: 120px; height: 1px; background: var(--hairline); }
+
+/* ── Generic ── */
+.pf-display { font-family: var(--font-serif); font-weight: 500; font-size: var(--text-display); line-height: var(--leading-tight); letter-spacing: var(--track-display); color: var(--text-strong); margin: 0; }
+.pf-h2 { font-family: var(--font-serif); font-weight: 500; font-size: var(--text-h1); line-height: var(--leading-tight); letter-spacing: var(--track-display); color: var(--text-strong); margin: 0; }
+.pf-prose { font-size: var(--text-body-lg); line-height: var(--leading-body); color: var(--text-body); max-width: 60ch; }
+.pf-skillgroup { display: flex; flex-direction: column; gap: var(--space-4); }
+.pf-pillrow { display: flex; flex-wrap: wrap; gap: var(--space-3); }
+
+/* ── Work grid ── */
+.pf-work-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-6); }
+
+/* ── Awards ── */
+.pf-award { display: flex; align-items: baseline; justify-content: space-between; gap: var(--space-5); padding: var(--space-5) 0; border-top: 1px solid var(--hairline-soft); }
+.pf-award:last-child { border-bottom: 1px solid var(--hairline-soft); }
+.pf-award-name { font-family: var(--font-serif); font-weight: 500; font-size: var(--text-h3); color: var(--text-strong); letter-spacing: var(--track-display); }
+.pf-award-year { font-family: var(--font-sans); font-size: var(--text-label); letter-spacing: var(--track-label-tight); text-transform: uppercase; color: var(--text-muted); white-space: nowrap; }
+
+/* ── Contact / footer ── */
+.pf-footer { display: flex; align-items: center; justify-content: space-between; gap: var(--space-5); padding: var(--space-7) var(--gutter); border-top: 1px solid var(--hairline-soft); font-family: var(--font-sans); font-size: var(--text-small); color: var(--text-muted); flex-wrap: wrap; }
+
+/* ── Reveal on scroll (only when motion is allowed; JS adds .js-reveal) ── */
+.js-reveal [data-reveal] { opacity: 0; transform: translateY(30px); transition: opacity 0.85s var(--ease-out), transform 0.85s var(--ease-out); }
+.js-reveal [data-reveal].in { opacity: 1; transform: none; }
+
+/* Staggered cascade for grids / lists of revealing children */
+.js-reveal .pf-stagger > [data-reveal] { transition-delay: 0s; }
+.js-reveal .pf-stagger > [data-reveal]:nth-child(2) { transition-delay: 0.08s; }
+.js-reveal .pf-stagger > [data-reveal]:nth-child(3) { transition-delay: 0.16s; }
+.js-reveal .pf-stagger > [data-reveal]:nth-child(4) { transition-delay: 0.24s; }
+.js-reveal .pf-stagger > [data-reveal]:nth-child(5) { transition-delay: 0.32s; }
+.js-reveal .pf-stagger > [data-reveal]:nth-child(6) { transition-delay: 0.40s; }
+
+/* ── Smooth theme cross-fade — baseline (0-specificity, so inline styles &
+      component transitions still win where they set their own) ── */
+.pf-root :where(section, header, footer, nav, div, h1, h2, h3, h4, p, span, a, label, li, input, textarea) {
+  transition: background-color var(--dur-slow) var(--ease-soft),
+              color var(--dur-slow) var(--ease-soft),
+              border-color var(--dur-slow) var(--ease-soft),
+              box-shadow var(--dur-slow) var(--ease-soft);
+}
+
+/* ── Responsive ── */
+@media (max-width: 860px) {
+  .pf-nav-links { display: none; }
+  .pf-burger { display: flex; }
+  .pf-work-grid { grid-template-columns: 1fr; }
+  .pf-slider { display: none; }
+  .pf-gridlines-inner { grid-template-columns: repeat(3, 1fr); }
+}
+@media (max-width: 600px) {
+  .pf-hero { padding-top: 96px; }
+}

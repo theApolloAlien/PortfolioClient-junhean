@@ -1,0 +1,36 @@
+/* ─────────────────────────────────────────────────────────────
+   Aura · Base layer
+   Minimal, opinionated-but-light resets so any surface that links
+   styles.css inherits the canvas, type and selection colour.
+   ───────────────────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background: var(--surface);
+  color: var(--text-strong);
+  font-family: var(--font-sans);
+  font-size: var(--text-body);
+  line-height: var(--leading-body);
+  font-weight: var(--weight-regular);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: var(--aura-magenta);
+  color: var(--cream-100);
+}
+
+a { color: inherit; }
+
+/* Honour reduced-motion globally for aurora drift & reveals */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}

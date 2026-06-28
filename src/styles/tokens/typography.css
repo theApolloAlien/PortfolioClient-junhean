@@ -1,0 +1,44 @@
+/* ─────────────────────────────────────────────────────────────
+   Aura · Typography
+   High-contrast serif display against wide-tracked grotesque
+   labels. Hero is oversized; labels are UPPERCASE + tracked.
+   ───────────────────────────────────────────────────────────── */
+:root {
+  /* ── Families ── */
+  --font-serif: "Playfair Display", Georgia, "Times New Roman", serif;
+  --font-sans:  "Space Grotesk", "Helvetica Neue", Arial, sans-serif;
+
+  /* ── Weights ── */
+  --weight-light:    300;
+  --weight-regular:  400;
+  --weight-medium:   500;
+  --weight-semibold: 600;
+  --weight-bold:     700;
+  --weight-black:    900;
+
+  /* ── Type scale ── */
+  --text-hero:     clamp(4.5rem, 15vw, 13.5rem);  /* the name / one word   */
+  --text-display:  clamp(3rem, 8.5vw, 7.5rem);    /* section words         */
+  --text-h1:       clamp(2.5rem, 5.5vw, 4.75rem);
+  --text-h2:       clamp(2rem, 4vw, 3.25rem);
+  --text-h3:       clamp(1.5rem, 2.4vw, 2rem);
+  --text-title:    1.25rem;
+  --text-body-lg:  1.25rem;
+  --text-body:     1.0625rem;
+  --text-small:    0.9375rem;
+  --text-label:    0.8125rem;   /* tracked caps eyebrows / nav  */
+  --text-micro:    0.6875rem;   /* corner annotations           */
+
+  /* ── Letter-spacing ── */
+  --track-label:       0.24em;   /* UPPERCASE labels / nav       */
+  --track-label-tight: 0.15em;
+  --track-pill:        0.12em;
+  --track-tight:      -0.02em;   /* large serif display          */
+  --track-display:    -0.015em;
+
+  /* ── Line-height ── */
+  --leading-hero:  0.92;
+  --leading-tight: 1.05;
+  --leading-snug:  1.2;
+  --leading-body:  1.62;
+}

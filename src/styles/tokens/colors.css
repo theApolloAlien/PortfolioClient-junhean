@@ -1,0 +1,63 @@
+/* ─────────────────────────────────────────────────────────────
+   Aura · Colour system
+   Two canvases (warm light grey / deep oxblood) + a six-stop
+   aurora palette used only inside blurred gradient forms.
+   Base tokens first, then semantic aliases that flip per theme.
+   ───────────────────────────────────────────────────────────── */
+:root {
+  /* ── Canvas backgrounds ── */
+  --canvas-light: #EAE7E2;   /* warm light grey — primary canvas      */
+  --canvas-dark:  #2B0B0E;   /* deep oxblood / maroon — dramatic dark */
+
+  /* ── Aurora gradient palette (only inside blurred forms) ── */
+  --aura-magenta:  #E81F8C;  /* hot magenta / fuchsia   */
+  --aura-violet:   #7A3FF0;  /* electric purple         */
+  --aura-coral:    #FF6A45;  /* warm coral / orange     */
+  --aura-gold:     #FFC73C;  /* golden yellow           */
+  --aura-teal:     #2FC9B6;  /* teal / cyan             */
+  --aura-lavender: #C9A8FF;  /* soft lavender           */
+
+  /* ── Ink ── */
+  --ink-900:  #161616;       /* near-black, on light    */
+  --ink-700:  #2A2A2A;
+  --cream-50: #F4F0EA;       /* cream, on dark          */
+  --cream-100:#FBF8F3;
+
+  /* ── Semantic aliases · LIGHT theme (default) ── */
+  --surface:        var(--canvas-light);
+  --surface-raised: #F1EEE9;            /* card / glass backing on light */
+  --surface-sunken: #E2DED8;
+  --text-strong:    var(--ink-900);
+  --text-body:      rgba(22, 22, 22, 0.80);
+  --text-muted:     rgba(22, 22, 22, 0.54);
+  --text-faint:     rgba(22, 22, 22, 0.36);
+  --hairline:       rgba(22, 22, 22, 0.60);   /* 1px dividers / nav rules */
+  --hairline-soft:  rgba(22, 22, 22, 0.16);
+  --gridline:       rgba(22, 22, 22, 0.05);   /* faint editorial column rules */
+  --badge-border:   rgba(22, 22, 22, 0.85);
+  --badge-text:     var(--ink-900);
+  --glass-tint:     rgba(234, 231, 226, 0.55);
+  --accent:         var(--aura-magenta);
+  --focus-ring:     var(--aura-violet);
+  --on-accent:      var(--cream-100);
+}
+
+/* ── Semantic aliases · DARK theme (oxblood canvas) ── */
+[data-theme="dark"] {
+  --surface:        var(--canvas-dark);
+  --surface-raised: #3A1318;
+  --surface-sunken: #220A0C;
+  --text-strong:    var(--cream-50);
+  --text-body:      rgba(244, 240, 234, 0.82);
+  --text-muted:     rgba(244, 240, 234, 0.56);
+  --text-faint:     rgba(244, 240, 234, 0.34);
+  --hairline:       rgba(244, 240, 234, 0.58);
+  --hairline-soft:  rgba(244, 240, 234, 0.18);
+  --gridline:       rgba(244, 240, 234, 0.06);
+  --badge-border:   rgba(244, 240, 234, 0.80);
+  --badge-text:     var(--cream-50);
+  --glass-tint:     rgba(43, 11, 14, 0.50);
+  --accent:         var(--aura-coral);
+  --focus-ring:     var(--aura-lavender);
+  --on-accent:      var(--ink-900);
+}

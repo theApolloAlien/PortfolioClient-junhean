@@ -1,0 +1,15 @@
+/* ═══════════════════════════════════════════════════════════════
+   Aura — Design System
+   Grainy aurora-gradient editorial system for Ho Jun Hean's
+   portfolio. Single global-CSS entry point: this file is a list of
+   @imports of the design tokens.
+
+   NOTE: the webfonts (Playfair Display + Space Grotesk) are loaded
+   via <link> in index.html (with preconnect) rather than an @import
+   here, so they fetch in parallel with the document.
+   ═══════════════════════════════════════════════════════════════ */
+@import url("./tokens/colors.css");
+@import url("./tokens/typography.css");
+@import url("./tokens/spacing.css");
+@import url("./tokens/effects.css");
+@import url("./tokens/base.css");

@@ -19,15 +19,8 @@ export function TimelineEntry({
 }) {
   return (
     <article
-      className={className}
-      style={{
-        display: 'grid',
-        gridTemplateColumns: 'minmax(120px, 200px) 1fr',
-        gap: 'var(--space-7)',
-        padding: 'var(--space-7) 0',
-        borderTop: '1px solid var(--hairline-soft)',
-        ...style,
-      }}
+      className={'pf-timeline' + (className ? ' ' + className : '')}
+      style={style}
       {...rest}
     >
       <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-2)' }}>

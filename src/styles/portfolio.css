@@ -44,6 +44,14 @@
 .pf-skillgroup { display: flex; flex-direction: column; gap: var(--space-4); }
 .pf-pillrow { display: flex; flex-wrap: wrap; gap: var(--space-3); }
 
+/* ── About: headline + accent orb ── */
+.pf-about-head { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: var(--space-7); align-items: start; }
+/* ── About: skill groups — auto-fit so they collapse on narrow screens ── */
+.pf-skills { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: var(--space-7); }
+
+/* ── Experience: one timeline row (date rail + content) ── */
+.pf-timeline { display: grid; grid-template-columns: minmax(120px, 200px) 1fr; gap: var(--space-7); padding: var(--space-7) 0; border-top: 1px solid var(--hairline-soft); }
+
 /* ── Work grid ── */
 .pf-work-grid { display: grid; grid-template-columns: repeat(3, 1fr); grid-auto-rows: 1fr; gap: var(--space-6); }
 .pf-work-grid > * { height: 100%; }
@@ -132,4 +140,8 @@
 }
 @media (max-width: 600px) {
   .pf-hero { padding-top: 96px; }
+  /* Stack the timeline so the description isn't squeezed into a sliver. */
+  .pf-timeline { grid-template-columns: 1fr; gap: var(--space-3); padding: var(--space-6) 0; }
+  /* Tighten the headline/orb gap so the headline keeps its room. */
+  .pf-about-head { gap: var(--space-4); }
 }

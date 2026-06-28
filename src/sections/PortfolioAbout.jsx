@@ -9,7 +9,7 @@ export function PortfolioAbout() {
       <div className="pf-container">
         <SectionLabel index={1} rule data-reveal>About</SectionLabel>
 
-        <div style={{ display: 'grid', gridTemplateColumns: 'minmax(0, 1fr) auto', gap: 'var(--space-7)', alignItems: 'start', marginTop: 'var(--space-8)' }}>
+        <div className="pf-about-head" style={{ marginTop: 'var(--space-8)' }}>
           <p data-reveal style={{
             margin: 0,
             maxWidth: '24ch',
@@ -27,7 +27,7 @@ export function PortfolioAbout() {
 
         <p className="pf-prose" data-reveal style={{ marginTop: 'var(--space-6)' }}>{P.bio}</p>
 
-        <div className="pf-stagger" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 'var(--space-7)', marginTop: 'var(--space-9)' }}>
+        <div className="pf-skills pf-stagger" style={{ marginTop: 'var(--space-9)' }}>
           {P.skills.map((g) => (
             <div className="pf-skillgroup" data-reveal key={g.label}>
               <SectionLabel>{g.label}</SectionLabel>

@@ -1,4 +1,5 @@
 import React from 'react';
+import { rgba } from '../../lib/color.js';
 
 /* Aurora presets — curated multi-stop sets pulled from the palette. */
 const AURA_PRESETS = {
@@ -18,12 +19,6 @@ const LAYOUT = [
   { top: '40%',  left: '8%',  size: 46, dur: 48, delay: -5,  anim: 'aura-drift-alt', glowDur: 15, glowDelay: -11 },
   { top: '12%',  left: '28%', size: 36, dur: 40, delay: -23, anim: 'aura-drift',     glowDur: 18, glowDelay: -6 },
 ];
-
-function rgba(hex, a) {
-  const h = hex.replace('#', '');
-  const n = parseInt(h.length === 3 ? h.replace(/(.)/g, '$1$1') : h, 16);
-  return `rgba(${(n >> 16) & 255}, ${(n >> 8) & 255}, ${n & 255}, ${a})`;
-}
 
 /**
  * AuraBackdrop — the signature field of soft, blurred, slowly drifting

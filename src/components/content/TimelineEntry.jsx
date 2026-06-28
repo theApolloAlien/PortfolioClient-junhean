@@ -52,7 +52,7 @@ export function TimelineEntry({
 
       <div>
         <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-4)', marginBottom: 'var(--space-3)' }}>
-          {orb && <GradientOrb palette={orb} size={30} gloss={false} />}
+          {orb && <GradientOrb palette={orb} size={30} roam={4} peak={0.92} />}
           {role && (
             <span style={{
               fontFamily: 'var(--font-sans)',

@@ -45,7 +45,8 @@
 .pf-pillrow { display: flex; flex-wrap: wrap; gap: var(--space-3); }
 
 /* ── Work grid ── */
-.pf-work-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-6); }
+.pf-work-grid { display: grid; grid-template-columns: repeat(3, 1fr); grid-auto-rows: 1fr; gap: var(--space-6); }
+.pf-work-grid > * { height: 100%; }
 
 /* ── Awards ── */
 .pf-award { display: flex; align-items: baseline; justify-content: space-between; gap: var(--space-5); padding: var(--space-5) 0; border-top: 1px solid var(--hairline-soft); }
@@ -126,7 +127,7 @@
 @media (max-width: 860px) {
   .pf-nav-links { display: none; }
   .pf-burger { display: flex; }
-  .pf-work-grid { grid-template-columns: 1fr; }
+  .pf-work-grid { grid-template-columns: 1fr; grid-auto-rows: auto; }
   .pf-slider { display: none; }
 }
 @media (max-width: 600px) {

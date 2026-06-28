@@ -5,7 +5,7 @@ import { PORTFOLIO } from '../data/portfolio.js';
 export function PortfolioAbout() {
   const P = PORTFOLIO;
   return (
-    <section id="about" className="pf-section">
+    <section id="about" className="pf-section" style={{ overflow: 'hidden' }}>
       <div className="pf-container">
         <SectionLabel index={1} rule data-reveal>About</SectionLabel>
 
@@ -22,7 +22,7 @@ export function PortfolioAbout() {
           }}>
             A pharmacist with a communicator&rsquo;s eye.
           </p>
-          <GradientOrb palette="lavender" size={108} float data-reveal style={{ justifySelf: 'end' }} />
+          <GradientOrb palette="lavender" size={108} roam={26} data-reveal style={{ justifySelf: 'end' }} />
         </div>
 
         <p className="pf-prose" data-reveal style={{ marginTop: 'var(--space-6)' }}>{P.bio}</p>

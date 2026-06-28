@@ -51,9 +51,25 @@
   0%, 100% { opacity: var(--glow-min, 0.55); }
   50%      { opacity: var(--glow-max, 0.95); }
 }
-@keyframes float-orb {
-  0%, 100% { transform: translateY(0); }
-  50%      { transform: translateY(-10px); }
+/* Orb float paths — gentle wandering translate. Amplitude scales with each
+   orb's --roam length so one keyframe fits every size; the blobs always
+   return to origin (0,0) so layout positions never shift. */
+@keyframes orb-float-a {
+  0%, 100% { transform: translate(0, 0); }
+  25%      { transform: translate(calc(var(--roam, 12px) * 0.7),  calc(var(--roam, 12px) * -0.55)); }
+  50%      { transform: translate(calc(var(--roam, 12px) * -0.45), calc(var(--roam, 12px) * -1)); }
+  75%      { transform: translate(calc(var(--roam, 12px) * -0.85), calc(var(--roam, 12px) * 0.35)); }
+}
+@keyframes orb-float-b {
+  0%, 100% { transform: translate(0, 0); }
+  33%      { transform: translate(calc(var(--roam, 12px) * -0.8), calc(var(--roam, 12px) * 0.6)); }
+  66%      { transform: translate(calc(var(--roam, 12px) * 0.65), calc(var(--roam, 12px) * 0.95)); }
+}
+@keyframes orb-float-c {
+  0%, 100% { transform: translate(0, 0); }
+  20%      { transform: translate(calc(var(--roam, 12px) * 0.9),  calc(var(--roam, 12px) * 0.4)); }
+  50%      { transform: translate(calc(var(--roam, 12px) * 0.3),  calc(var(--roam, 12px) * -0.85)); }
+  80%      { transform: translate(calc(var(--roam, 12px) * -0.7), calc(var(--roam, 12px) * -0.25)); }
 }
 @keyframes chevron-bob {
   0%, 100% { transform: translateY(0); }
